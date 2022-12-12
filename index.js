@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
 });
 
 // Server port set-up.
-const port = process.env.SERVER_PORT || 54441;
+const port = process.env.SERVER_PORT;
 app.listen(port, () => {
     console.log(`Server is ready at http://localhost:${port}`);
 });

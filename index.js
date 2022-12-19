@@ -2,9 +2,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
-
+    
 dotenv.config();
+const userRoute = require("./Routes/userRoute");
 
 // This creates the express app framework within the application.//
 const app = express();
@@ -19,10 +19,14 @@ app.use((req, res, next)=> {
     next();
 });
 
+//Routes://
+app.use("/api/user", userRoute);
+
+
 // Server response on successful connection. 
 app.get("/", (req, res)=> {
     res.send("Sever is Ready");
-});
+});  
 
 // Error message handler.
 app.use((err, req, res, next) => {

@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
     
 dotenv.config();
 const userRoute = require("./Routes/userRoute");
+const vendorRoute = require("./Routes/vendorRoute");
 
 // This creates the express app framework within the application.//
 const app = express();
@@ -21,7 +22,7 @@ app.use((req, res, next)=> {
 
 //Routes://
 app.use("/api/user", userRoute);
-
+app.use("/api/vendor", vendorRoute);
 
 // Server response on successful connection. 
 app.get("/", (req, res)=> {

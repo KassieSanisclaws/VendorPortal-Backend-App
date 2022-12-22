@@ -4,15 +4,27 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 //Generate Token when user signs in with authentication credentials.
-exports.generateToken = (user) => {
+exports.generateTokenU = (user) => {
      return jwt.sign({
         //TODO: user credentials to sign in here.
-
+           _id: user._id,
+           name: user.name,
+           email: user.email,
+           isAdmin: user.isAdmin
      },
-//Process.env is called to sign the token with our secret passcode. 
+//Process.env is called to sign the token with our secret passcode & days before expiration. 
       process.env.JWT_SECRET,{ expiresIn: '10d' });  
  };
 
+exports.generateTokenV = (vendor) => {
+     return jwt.sign({
+       _id: vendor._id,
+       vendorName: vendor.vendorName,
+       vendorEmail: vendor.vendorEmail,
+       isAdmin: vendor.isAdmin 
+    }, 
+     process.env.JWT_SECRET, { expiresIn: '5d' });
+}
 
  exports.isAuth = (req, res, next) => {
    const authorization = req.headers.authorization;
@@ -30,3 +42,7 @@ exports.generateToken = (user) => {
     }else{
       res.status(401).send({ message: "No Token" })};
  };
+
+exports.isAdmin = (req, res, next) => {
+  //TODO: Admin login authentication.
+}

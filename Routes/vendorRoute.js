@@ -11,5 +11,4 @@ vendorRoute.get("/:id", vendorController.getVendorByID);
 //loginVendor: Controller.//
 vendorRoute.post("/login", vendorController.loginVendor);
 
-//
-module.exports = vendorRoute;
+module.exports = vendorRoute; 
